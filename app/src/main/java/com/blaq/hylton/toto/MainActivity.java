@@ -126,12 +126,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(MainActivity.this, "Dialogue worked", Toast.LENGTH_SHORT).show();
+                        //saveTo DataBase()
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, "Cancel pressed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+                        //Do Nothing when cancel is pressed
                     }
                 });
 
