@@ -1,15 +1,20 @@
 package com.blaq.hylton.toto;
 
+import android.content.DialogInterface;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addTask();
+                Toast.makeText(MainActivity.this, "Fab worked", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -101,5 +114,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fab.startAnimation(shrink);
+    }
+
+    public void addTask()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+
+        builder.setView(layoutInflater.inflate(R.layout.add_task_dialog, null))
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "Dialogue worked", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "Cancel pressed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        builder.setTitle("Add Task");
+        builder.show();
     }
 }
