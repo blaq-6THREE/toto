@@ -163,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater layoutInflater = this.getLayoutInflater();
-
         builder.setView(layoutInflater.inflate(R.layout.add_task_dialog, null))
                 .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                     @Override
