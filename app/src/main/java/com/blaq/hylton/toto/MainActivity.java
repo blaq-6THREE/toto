@@ -1,13 +1,17 @@
 package com.blaq.hylton.toto;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -16,11 +20,20 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MAINACTIVITY";
 
     private SectionPageManager mSectionPageManager;
     private ViewPager mPager;
     private TabLayout mTabLayout;
+
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private FirebaseUser mFirebaseUser;
 
     private FloatingActionButton fab;
 
@@ -32,7 +45,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        colorIntArray = new int[]{R.color.walking, R.color.golfing};
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        if (mFirebaseUser == null)
+        {
+            Intent intent = new Intent(MainActivity.this, GoogleSignUp.class);
+            startActivity(intent);
+            Log.w(TAG, "onAuthStateChanged: User is null");
+        }
+        else
+        {
+            Snackbar.make(findViewById(R.id.main_layout), "Signed in with " + mFirebaseUser.getEmail(), Snackbar.LENGTH_LONG).show();
+            Log.w(TAG, "onAuthStateChanged: isnt null");
+        }
+
+        colorIntArray = new int[]{R.color.todayColor, R.color.morrowColor};
         iconIntArray = new int[]{R.drawable.ic_add_black, R.drawable.ic_add_black};
 
         mPager = findViewById(R.id.pager);
@@ -67,6 +95,21 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Fab worked", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     public void setupViewPager(ViewPager viewPager)

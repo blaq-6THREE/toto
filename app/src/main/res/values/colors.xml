@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="walking">#64b5f6</color>
-    <color name="golfing">#81c784</color>
+    <color name="todayColor">#64b5f6</color>
+    <color name="morrowColor">#81c784</color>
 </resources>

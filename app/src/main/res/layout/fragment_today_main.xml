@@ -4,11 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/today_boss_layout"
+    android:padding="8dp"
     android:orientation="vertical">
+
+    <Button
+        android:id="@+id/signout"
+        android:text="signout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/database_adder_button"
+        android:text="Add to databade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/test_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <ListView
         android:id="@+id/today_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+
 
 </LinearLayout>

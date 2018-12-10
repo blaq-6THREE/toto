@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "360534103056",
+    "firebase_url": "https://toto-a24e1.firebaseio.com",
+    "project_id": "toto-a24e1",
+    "storage_bucket": "toto-a24e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360534103056:android:84182685e279d0cf",
+        "android_client_info": {
+          "package_name": "com.blaq.hylton.toto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360534103056-pa89a1du37bad27g3rrfopehdg3jq4mk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blaq.hylton.toto",
+            "certificate_hash": "25dbff16cefb817d0fd0bd6810a4efcaf41effe7"
+          }
+        },
+        {
+          "client_id": "360534103056-i9jrq18dll0r4astu49c7j82nvi77q0t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJC1Zizasnbt5WefJjD8Z6mHv-rQWuL30"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360534103056-i9jrq18dll0r4astu49c7j82nvi77q0t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
