@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.blaq.hylton.toto.data.User;
+import com.blaq.hylton.toto.data.UserList;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -30,13 +31,8 @@ public class TomorrowFragment extends Fragment {
     private DatabaseReference mDatabaseReference;
     private FirebaseUser mFirebaseUser;
 
-    private TextView email;
-    private TextView userID;
-    private TextView name;
-
     private ListView mListView;
-    private ArrayList<String> mArrayList;
-    private ArrayAdapter<String> mArrayAdapter;
+    private ArrayList<User> mArrayList;
 
     @Nullable
     @Override
@@ -49,14 +45,28 @@ public class TomorrowFragment extends Fragment {
         mListView = bossView.findViewById(R.id.morrow_list_item);
 
         mArrayList = new ArrayList<>();
-        mArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, mArrayList);
 
+        return bossView;
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //showData(dataSnapshot);
+
+                mArrayList.clear();
+
+                for (DataSnapshot ds: dataSnapshot.getChildren())
+                {
+                    User user = ds.child(mFirebaseUser.getUid()).getValue(User.class);
+
+                    mArrayList.add(user);
+                }
+                UserList userList = new UserList(getActivity(), mArrayList);
+                mListView.setAdapter(userList);
             }
 
             @Override
@@ -64,23 +74,5 @@ public class TomorrowFragment extends Fragment {
 
             }
         });
-
-        return bossView;
     }
-
-//    private void showData(DataSnapshot dataSnapshot)
-//    {
-//        for (DataSnapshot ds: dataSnapshot.getChildren())
-//        {
-//            User user = new User();
-//            user.setEmail(ds.child(mFirebaseUser.getUid()).getValue(User.class).getName());
-//            user.setName(ds.child(mFirebaseUser.getUid()).getValue(User.class).getEmail());
-//
-//            mArrayList.add(user.getEmail());
-//            mArrayList.add(user.getName());
-//
-//
-//            mListView.setAdapter(mArrayAdapter);
-//        }
-//    }
 }
